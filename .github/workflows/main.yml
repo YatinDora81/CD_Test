@@ -23,7 +23,7 @@ jobs:
         run: echo "Running in STAGING environment"
       
       - name: Print Staging Secret
-        run: echo "Staging secret is: ${{ secrets.space }}"
+        run: "echo \"Staging secret is: ${{ secrets.space }}\""
 
   prod:
     if: ${{ inputs.environment == 'prod' }}
@@ -35,4 +35,4 @@ jobs:
         run: echo "Running in PRODUCTION environment"
       
       - name: Print Production Secret
-        run: echo "Production secret is: ${{ secrets.space }}"
+        run: "echo \"Production secret is: ${{ secrets.space }}\""
