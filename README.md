@@ -1,1 +1,1 @@
-yatin ji ok
+yatin ji okay stfu
