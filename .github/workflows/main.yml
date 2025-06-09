@@ -2,19 +2,9 @@ name: Multi-Environment Workflow
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: "Choose environment"
-        required: true
-        default: staging
-        type: choice
-        options:
-          - staging
-          - prod
 
 jobs:
   staging:
-    if: ${{ inputs.environment == 'staging' }}
     runs-on: ubuntu-latest
     environment: staging
 
@@ -26,7 +16,7 @@ jobs:
         run: "echo \"Staging secret is: ${{ secrets.SPACE }}\""
 
   prod:
-    if: ${{ inputs.environment == 'prod' }}
+    needs: staging
     runs-on: ubuntu-latest
     environment: prod
 
