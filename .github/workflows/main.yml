@@ -12,9 +12,9 @@ jobs:
       - name: Execute remote SSH commands using SSH key
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.PROD_HOST }}
-          username: ${{ secrets.PROD_USERNAME }}
-          key: ${{ secrets.PROD_KEY }}
+          host: ${{ secrets.STAGING_HOST }}
+          username: ${{ secrets.STAGING_USERNAME }}
+          key: ${{ secrets.STAGING_KEY }}
           port: ${{ secrets.PORT }}
           script:  |
             cd staging/CD_Test
