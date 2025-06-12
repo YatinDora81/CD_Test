@@ -35,8 +35,22 @@ jobs:
     environment: prod
 
     steps:
-      - name: Echo Production Environment
-        run: echo "Running in PRODUCTION environment"
-      
-      - name: Print Production Secret
-        run: "echo \"Production secret is: ${{ secrets.SPACE }}\""
+      - name: Execute remote SSH commands using SSH key
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USERNAME }}
+          key: ${{ secrets.PROD_KEY }}
+          port: ${{ secrets.PORT }}
+          script:  |
+            cd prod/CD_Test
+            git stash
+            git pull origin main
+            git stash apply
+            cd client
+            npm i
+            cd ..
+            cd server
+            npm i
+            npx pm2 restart 2
+            npx pm2 restart 3 
