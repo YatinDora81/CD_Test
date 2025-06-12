@@ -1,9 +1,8 @@
-import React , {useState} from 'react'
-import toast from 'react-hot-toast';
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 function App() {
-
-  const [apiClick , setApiClick] = useState(0);
+  const [apiClick, setApiClick] = useState(0);
 
   const setCookieHandler = async () => {
     try {
@@ -15,9 +14,9 @@ function App() {
         const data = await response.json();
         console.log(data);
         setApiClick(apiClick + 1);
-        toast.success(data)
+        toast.success(data);
       } else {
-        console.error("Failed to set cookie")
+        console.error("Failed to set cookie");
         toast.error("Failed to set cookie but get response from bd");
       }
     } catch (error) {
@@ -28,17 +27,22 @@ function App() {
 
   const checkCookieHandler = async () => {
     try {
-      const response = await fetch(import.meta.env.VITE_BD_BASE_URL + "/check", {
-        method: "GET",
-        credentials: "include",
-      });
+      const response = await fetch(
+        import.meta.env.VITE_BD_BASE_URL + "/check",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
       const data = await response.json();
       if (response.ok) {
         console.log(data);
         toast.success(data.message);
       } else {
         console.error("Failed to check cookie" + data);
-        toast.error("Failed to check cookie but get response from bd" + data.message);
+        toast.error(
+          "Failed to check cookie but get response from bd" + data.message
+        );
       }
     } catch (error) {
       console.error("Error:", error);
@@ -48,13 +52,18 @@ function App() {
 
   return (
     <div>
-      <h1>Hello from Yatin....</h1>
+      <h1>Hello from Yatin? </h1>
       <h1>API REQUEST IS {apiClick}</h1>
-      <button style={{ marginTop: "20px" }} onClick={setCookieHandler}> SET COOKIE </button>
-      <button style={{ marginTop: "20px" }} onClick={checkCookieHandler}> Check COOKIE </button>
-
+      <button style={{ marginTop: "20px" }} onClick={setCookieHandler}>
+        {" "}
+        SET COOKIE{" "}
+      </button>
+      <button style={{ marginTop: "20px" }} onClick={checkCookieHandler}>
+        {" "}
+        Check COOKIE{" "}
+      </button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
