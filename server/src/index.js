@@ -61,6 +61,13 @@ app.get(
   }
 );
 
+
+app.get("/fun" , (req,res)=>{
+  res.status(200).json({
+    message  : "Just for fun"
+  })
+})
+
 app.listen(PORT, () => {
   console.log(`APP running at ${PORT}`);
 });
