@@ -52,7 +52,7 @@ function App() {
 
   return (
     <div>
-      <h1>poiuytrety✏️</h1>
+      <h1>This is app for testing purpose of MERN STACK CI-CD</h1>
       <h1>API REQUEST IS {apiClick}</h1>
       <button style={{ marginTop: "20px" }} onClick={setCookieHandler}>
         {" "}
